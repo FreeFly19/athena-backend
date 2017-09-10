@@ -1,10 +1,9 @@
 package com.athena.question.answer;
 
+import com.athena.question.Question;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -17,4 +16,8 @@ public class Answer implements Serializable {
     private String content;
 
     private boolean isCorrect;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "question_id")
+    private Question question;
 }
